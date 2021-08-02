@@ -27,16 +27,16 @@ class RegisterController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
-        $form->handleRequest($request); // formulaire écoute requête
+        $form->handleRequest($request); // request listening form
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();// Tu injectes dans l'objet user toutes les données récupérées du formulaire
+            $user = $form->getData();  // You inject into the user object all the data retrieved from the form
 
-            $password = $encoder->encodePassword($user, $user->getPassword()); //Mot de passe crypté dans variable
-            $user->setPassword($password); //Réinjecte dans objet User
+            $password = $encoder->encodePassword($user, $user->getPassword()); // Password encrypted in variable
+            $user->setPassword($password); // Feed back into User object
 
-            $this->entityManager->persist($user); //figer la data
-            $this->entityManager->flush(); // enregistrer en BDD
+            $this->entityManager->persist($user); // freeze the data
+            $this->entityManager->flush(); // Save it in BDD
         }
 
         return $this->render('register/index.html.twig', [
