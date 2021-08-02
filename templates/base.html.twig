@@ -34,21 +34,27 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">La boutique française</a>
+        <a class="navbar-brand" href="{{ path('home') }}">La boutique française</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Nos produits</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Qui sommes-nous</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">contact</a>
                 </li>
             </ul>
             <div class="navbar-item-custom">
-                {% if app.user %}
-                    <a href="{{ path('account')}}">Mon compte</a>|<a href="{{ path('app_logout')}}">Déconnexion</a>
+                {% if is_granted('ROLE_USER') %} 
+                    <a href="{{ path('account')}}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a href="{{ path('app_logout')}}">Déconnexion</a>
                 {% else %}
-                    <a href="{{ path('app_login')}}">Connexion</a>|<a href="{{ path('register')}}">inscription</a>
+                    <a href="{{ path('app_login')}}">Connexion </a> | <a href="{{ path('register')}}">inscription</a>
                 {% endif %}
             </div>
         </div>
@@ -119,9 +125,12 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <footer class="footer-custom">
+        <p>
+            &copy; 2021 La Boutique française<br>
+            <small> <a href="#">Privacy</a> 
+            &middot; <a href="#">Terms</a></small>
+        </p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
