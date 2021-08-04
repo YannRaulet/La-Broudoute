@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Classe\Search;
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,31 @@ class ProductRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);
+    }
+
+    /**
+     * Request that allows me to retrieve products based on user research
+     * @return Product[]
+     */
+    public function findWithSearch(Search $search) {                // Create request
+        $query = $this
+            ->createQueryBuilder('p')                               // Mapping with Product table
+            ->select('c', 'p')                                      // Select Category and Products in this query
+            ->join('p.category', 'c');                              // Join between product categories and the category table
+
+        if (!empty($search->categories)) {                          // Allow access to the 'string' and 'categories' properties of Search.php because they are not private
+            $query = $query
+                ->andWhere('c.id IN (:categories)')                 // I need the category Id to be in the category list
+                ->setParameter('categories', $search->categories);  // The value of 'categories' above will be what is in the 'search categories' object
+        }
+
+        if (!empty($search->string)) {                              // text search
+            $query = $query
+                ->andWhere('p.name LIKE :string')
+                ->setParameter('string', "%{$search->string}%");
+        }
+
+        return $query->getQuery()->getResult();
     }
 
     // /**
