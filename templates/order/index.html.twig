@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Valider ma commande - la Broudoute {% endblock %}
+
+{% block content %}
+
+    <h2>Passer ma commande</h2>
+    <p>Choisissez vos préférences avant de passer votre commande sur la Broudoute</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            {% set formHtml %}
+                {{ form(form) }}
+            {% endset %}
+
+        {{ formHtml|replace({'[br]': '<br>'})|raw }}        {#  Replace the separate [br] in the function __toString() of the Adress entity #}
+            <b>Choisir mon transporteur</b>
+        </div>
+        <div class="col-md-6">
+            <b>Récapitulatif de ma commande</b>
+            <b>Bouton pour payer</b>
+        </div>
+    </div>
+{% endblock %}
+
+    

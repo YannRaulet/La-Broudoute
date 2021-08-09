@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Controller;
+
+use App\Form\OrderType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class OrderController extends AbstractController
+{
+    /**
+     * @Route("/commande", name="order")
+     */
+    public function index(): Response
+    {
+        if (!$this->getUser()->getAddresses()->getValues()) {    // Get the Addresses() data of the User() entity
+            return $this->redirectToRoute('account_address_add');
+        }     
+
+        $form = $this->createForm(OrderType::class, null, [     // Null because the form is not linked to a class
+            'user' => $this->getUser()                          // Retrieve the logged in user
+        ]);  
+
+        return $this->render('order/index.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+}
