@@ -1,5 +1,5 @@
 body {
-    position:relative
+    position: relative;
 }
 
 .navbar-item-custom, .navbar-item-custom a{
@@ -42,15 +42,29 @@ body {
 }
 
 /* base.html */
-
 .cart-icone {
     width: 15px;
     height: 15px;
 }
 
 /* login.html.twig && register/index */
-
 .block-small {
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* order/index */
+.form-check {
+    background-color: #f4f8ff;
+    padding: 20px 65px;
+}
+
+.col-form-label {
+    font-weight: bold;
+}
+
+.order-summary {
+    background-color: #f4f8ff;
+    padding: 20px;
+    margin-top: 12px;
 }

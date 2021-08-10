@@ -72,6 +72,7 @@ class Address
     {
         return $this->getAddress().'[br]'.$this->getPostal(). ' ' .$this->getCity().' - '.$this->getCountry();
     }
+
     public function getId(): ?int
     {
         return $this->id;
