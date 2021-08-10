@@ -56,9 +56,21 @@ class Order
      */
     private bool $isPaid;
 
+ 
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
+    }
+
+    public function getTotal()                      // Created for the Admin/OrderCrudController
+    {
+        $total = null;
+        foreach ($this->getOrderDetails()->getValues() as $product) {
+            $total = $total + ($product->getPrice() * $product->getQuantity());
+        }
+
+        return $total;
     }
 
     public function getId(): ?int
