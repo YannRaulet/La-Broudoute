@@ -8,19 +8,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class AccountPasswordController extends AbstractController
 {
-    private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager) {
-        $this->entityManager = $entityManager;
-    }
-
     /**
      * @Route("/compte/modifier-mon-mot-de-passe", name="account_password")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function index(
+        Request $request,
+        EntityManagerInterface $manager,
+        UserPasswordHasherInterface $encoder
+        ): Response
     {
         $notification = null;
 
@@ -33,10 +33,10 @@ class AccountPasswordController extends AbstractController
             $old_pwd = $form->get('old_password')->getData();
             if($encoder->isPasswordValid($user, $old_pwd)) {
                 $new_pwd  =$form->get('new_password')->getData();
-                $password = $encoder->encodePassword($user, $new_pwd); // Password encrypted in variable
+                $password = $encoder->hashPassword($user, $new_pwd); // Password hashed in variable
 
                 $user->setPassword($password); // Feed back into User object
-                $this->entityManager->flush(); // no need to persist in a data modification.
+                $manager->flush(); // no need to persist in a data modification.
                 $notification = "Votre mot de passe à bien été mis à jour.";
             } else {
                 $notification = "Votre mot de passe actuel n'est pas le bon.";

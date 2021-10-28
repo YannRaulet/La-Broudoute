@@ -13,12 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccountAddressController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager) {
-        $this->entityManager = $entityManager;
-    }
-
     /**
      * @Route("/compte/adresses", name="account_address")
      */
@@ -30,7 +24,11 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/compte/ajouter-une-adresse", name="account_address_add")
      */
-    public function add(Request $request, Cart $cart): Response
+    public function add(
+        Request $request,
+        EntityManagerInterface $manager,
+        Cart $cart
+        ): Response
     {
         $address = new Address;
         $form = $this->createForm(AddressType::class, $address);
@@ -39,8 +37,8 @@ class AccountAddressController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $address->setUser($this->getUser());
 
-            $this->entityManager->persist($address);
-            $this->entityManager->flush();
+            $manager->persist($address);
+            $manager->flush();
 
             if ($cart->get()) {                     // If I have products in my cart
                 return $this->redirectToRoute('order');
@@ -58,9 +56,13 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/compte/modifier-une-adresse/{id}", name="account_address_edit")
      */
-    public function edit(Request $request, $id): Response
+    public function edit(
+        Request $request,
+        EntityManagerInterface $manager,
+        int $id
+        ): Response
     {
-        $address = $this->entityManager->getRepository(Address::class)->findOneById($id);
+        $address = $manager->getRepository(Address::class)->find($id);
         
         if (!$address || $address->getUser() != $this->getUser()) {
             return $this->redirectToRoute('account_address');
@@ -71,7 +73,7 @@ class AccountAddressController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->entityManager->flush();
+            $manager->flush();
             return $this->redirectToRoute('account_address');
         }
 
@@ -83,13 +85,16 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/compte/supprimer-une-adresse/{id}", name="account_address_delete")
      */
-    public function delete($id): Response
+    public function delete(
+        EntityManagerInterface $manager,
+        int $id
+        ): Response
     {
-        $address = $this->entityManager->getRepository(Address::class)->findOneById($id);
+        $address = $manager->getRepository(Address::class)->find($id);
         
         if ($address && $address->getUser() == $this->getUser()) {
-            $this->entityManager->remove($address);
-            $this->entityManager->flush();
+            $manager->remove($address);
+            $manager->flush();
         }
 
         return $this->redirectToRoute('account_address');

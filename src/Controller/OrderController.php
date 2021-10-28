@@ -14,13 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrderController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     /**
      * @Route("/commande", name="order")
      */
@@ -43,7 +36,10 @@ class OrderController extends AbstractController
     /**
      * @Route("/commande/recapitulatif", name="order_recap", methods={"POST"})
      */
-    public function add(Request $request, Cart $cart): Response
+    public function add(
+        Request $request,
+        EntityManagerInterface $manager,
+        Cart $cart): Response
     {  
         $form = $this->createForm(OrderType::class, null, [     // Null because the form is not linked to a class
             'user' => $this->getUser()                          // Retrieve the logged in user
@@ -73,7 +69,7 @@ class OrderController extends AbstractController
             $order->setDelivery($delivery_content);
             $order->setIsPaid(0);
 
-            $this->entityManager->persist($order);
+            $manager->persist($order);
             
 
             // Register my products : OrderDetails()
@@ -85,10 +81,10 @@ class OrderController extends AbstractController
                 $orderDetails->setPrice($product['product']->getPrice());
                 $orderDetails->setTotal($product['product']->getPrice() * $product['quantity']);
 
-                $this->entityManager->persist($orderDetails);
+                $manager->persist($orderDetails);
             }
 
-            $this->entityManager->flush();
+            $manager->flush();
             return $this->render('order/add.html.twig', [
                 'cart' => $cart->getFull(),                          // Retrieves all the data of the Cart entity with the full function
                 'carrier' => $carrier,
