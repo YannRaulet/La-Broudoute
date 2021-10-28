@@ -5,13 +5,16 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Validator\Constraints\Length;
 
 class RegisterType extends AbstractType
 {
@@ -20,34 +23,34 @@ class RegisterType extends AbstractType
         $builder
             ->add('firstname', TextType::class, [
                 'label' => 'Votre prénom',
+                'attr' => [
+                    'placeholder' => 'Entrez votre prénom'
+                ],
                 'constraints' => new Length([
                     'min' => 2,
-                    'max' => 30
+                    'minMessage' => 'Votre prénom doit faire au minimum {{ limit }} caractères',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 30,
                 ]),
-                'attr' => [
-                    'placeholder' => "Merci de saisir votre prénom"
-                ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Votre nom',
+                'attr' => [
+                    'placeholder' => 'Entrez votre nom'
+                ],
                 'constraints' => new Length([
                     'min' => 2,
-                    'max' => 30
-                ]),                
+                    'minMessage' => 'Votre nom doit faire au minimum {{ limit }} caractères',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 30,
+                ]),
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'votre email',
                 'attr' => [
-                    'placeholder' => "Merci de saisir votre nom."
+                    'placeholder' => 'Entrez votre adresse mail'
                 ]
             ])
-            ->add('email',EmailType::class, [
-                'label' => 'Votre Email',
-                'constraints' => new Length([
-                    'min' => 8,
-                    'max' => 60
-                ]),
-                    'attr' => [
-                    'placeholder' => "Merci de saisir votre adresse email."
-                ]
-            ] )
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe et la confirmation doivent être identiques',
@@ -64,11 +67,32 @@ class RegisterType extends AbstractType
                     'attr' => [
                         'placeholder' => "Merci de confirmer votre mot de passe."
                     ]    
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci de saisir un mot de passe',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Votre mot de passe doit faire au minimum {{ limit }} caractères',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'label' => "Accepter les conditions d'utilisation",
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Vous devez accepter les conditions.',
+                    ]),
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "S'inscrire",
-            ])
+                ]
+            )
         ;
     }
 

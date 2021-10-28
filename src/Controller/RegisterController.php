@@ -9,34 +9,40 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager) {
-        $this->entityManager = $entityManager;
-    }
 
     /**
      * @Route("/inscription", name="register")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function index(
+        Request $request,
+        EntityManagerInterface $manager,
+        UserPasswordHasherInterface $userPasswordHasherInterface
+        ): Response
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($request); // request listening form
 
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();  // You inject into the user object all the data retrieved from the form
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasherInterface->hashPassword(
+                    $user,
+                    //$form->get('plainPassword')->getData() ANCIEN
+                    $form->get('password')->getData()
+                )
+            );
 
-            $password = $encoder->encodePassword($user, $user->getPassword()); // Password encrypted in variable
-            $user->setPassword($password); // Feed back into User object
-
-            $this->entityManager->persist($user); // freeze the data
-            $this->entityManager->flush(); // Save it in BDD
+            $manager->persist($user);
+            $manager->flush();
+            // do anything else you need here, like send an email
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('register/index.html.twig', [
