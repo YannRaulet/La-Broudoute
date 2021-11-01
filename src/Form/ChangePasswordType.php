@@ -29,11 +29,11 @@ class ChangePasswordType extends AbstractType
                 'disabled' => true,
                 'label' => 'Mon nom'
             ])
-            ->add('old_password', PasswordType::class, [
+            ->add('old_password', PasswordType::class, [ 
                 'label' => 'Mon mot de passe actuel',
                 'mapped' => false,         // Do not save it in BDD
                 'attr' => [
-                    'placeholder' => 'Veuillez définir votre mot de passe actuel'
+                    'placeholder' => 'Veuillez saisir votre mot de passe actuel.'
                 ]
             ])
             ->add('new_password', RepeatedType::class, [

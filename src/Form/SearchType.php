@@ -24,7 +24,7 @@ class SearchType extends AbstractType
                     'class' => 'form-control-sm'
                 ]
             ])
-            ->add('categories', EntityType::class, [    // Cf Classes/search.php
+            ->add('categories', EntityType::class, [    // Enable to link to an entity Cf Classes/search.php
                 'label' => false,
                 'required' => false,
                 'class' => Category::class,             // Link with Category class
@@ -42,7 +42,7 @@ class SearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Search::class,              // Link to search class
+            'data_class' => Search::class,              // Link to search class : src/Classe/Search.php
             'method' => 'GET',                          // To allow user to copy URL
             'crsf_protection' => false,                 // No need for encryption
         ]);

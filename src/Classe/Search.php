@@ -9,8 +9,7 @@ class Search
     /**
      * @var string
      */
-    public $string = '';
-
+    public $string = '';        // No need private beacause no need getters and setters
     /**
      * @var Category[]
      */

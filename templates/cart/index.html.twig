@@ -18,8 +18,8 @@
                     <th scope="col">Total</th>
                 </tr>
             </thead>
-            <tbody>
-                {% set total = null %}
+            <tbody>     
+                {% set total = null %}   <!--Total to 0 before entering the for loop-->
                 {% for product in cart %}
                 <tr>
                     <th> 

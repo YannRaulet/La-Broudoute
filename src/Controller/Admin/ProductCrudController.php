@@ -26,7 +26,7 @@ class ProductCrudController extends AbstractCrudController
             ImageField::new('illustration')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads/')
-                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')    // The way to hash the name
                 ->setRequired(false),
             TextField::new('subtitle'),
             TextareaField::new('description'),
