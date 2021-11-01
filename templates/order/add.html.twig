@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-md-6">
             <strong> Mon adresse de livraison</strong><br>
-            <div class="form-check mt-2">
+            <div class="order-form mt-2">
                 {{ delivery|raw }}
             </div>
             <hr>
             <strong>Mon transporteur</strong><br>
-            <div class="form-check">
+            <div class="order-form">
                 {{ carrier.name }}<br>
                 {{ carrier.description }}<br>
                 {{ (carrier.price)|number_format(2, ',', '.') }} €

@@ -23,14 +23,20 @@ class OrderType extends AbstractType
                 'class' => Address::class,
                 'choices' => $user->getAddresses(),
                 'multiple' => false,
-                'expanded' => true
+                'expanded' => true,
+                'attr' => [
+                    'class' => 'order-form'
+                ]
             ])
             ->add('carriers', EntityType::class, [
                 'label' => 'Choisissez votre transporteur',
                 'required' => true,
                 'class' => Carrier::class,
                 'multiple' => false,
-                'expanded' => true
+                'expanded' => true,
+                'attr' => [
+                    'class' => 'order-form'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider ma commande',

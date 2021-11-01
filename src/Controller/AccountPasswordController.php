@@ -19,33 +19,36 @@ class AccountPasswordController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $manager,
-        UserPasswordHasherInterface $encoder
+        UserPasswordHasherInterface $userPasswordHasherInterface
         ): Response
     {
         $notification = null;
+        $notificationRed = null;
 
-        $user = $this->getUser();
+        $user = $this->getUser();                                           // Calls the user object                      
         $form = $this->createForm(ChangePasswordType::class, $user);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $old_pwd = $form->get('old_password')->getData();
-            if($encoder->isPasswordValid($user, $old_pwd)) {
-                $new_pwd  =$form->get('new_password')->getData();
-                $password = $encoder->hashPassword($user, $new_pwd); // Password hashed in variable
+            $old_pwd = $form->get('old_password')->getData();               // retrieves the password typed in the form
+            if($userPasswordHasherInterface->isPasswordValid($user, $old_pwd)) {         // Compare the database password to the one you typed
+                $new_pwd  = $form->get('new_password')->getData();
+                $password = $userPasswordHasherInterface->hashPassword($user, $new_pwd); // Password hashed in variable
 
-                $user->setPassword($password); // Feed back into User object
-                $manager->flush(); // no need to persist in a data modification.
+                $user->setPassword($password);                              //  
+                $manager->flush();                                          // no need to persist in a data modification.
                 $notification = "Votre mot de passe à bien été mis à jour.";
             } else {
-                $notification = "Votre mot de passe actuel n'est pas le bon.";
+                $notificationRed = "Votre mot de passe actuel n'est pas le bon.";
+
             }
         }
 
         return $this->render('account/password.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification
+            'notification' => $notification,
+            'notificationRed' => $notificationRed
         ]);
     }
 }
