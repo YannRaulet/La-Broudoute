@@ -47,6 +47,14 @@ body {
 
 /* base.html */
 
+#carousel-title {
+    font-size: 6em;
+}
+
+#carousel-content {
+    font-size: 2em;
+}
+
 .cart-icone {
     width: 15px;
     height: 15px;
