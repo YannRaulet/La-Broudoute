@@ -11,6 +11,8 @@
     <!-- Bootstrap core CSS -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/nav.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/navBar.css')}}">
+
 
     <style>
         .bd-placeholder-img {
@@ -33,37 +35,55 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{{ path('home') }}">La Broudoute</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('products') }}">Nos produits</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Qui sommes-nous</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">contact</a>
-                </li>
-            </ul>
-            <div class="navbar-item-custom">
-                {% if is_granted('ROLE_USER') %} 
-                    <a href="{{ path('account')}}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a href="{{ path('app_logout')}}">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('app_login')}}">Connexion </a> | <a href="{{ path('register')}}">inscription</a>
-                {% endif %}
+    <div class="logo-container">
+        <div class="logo">
+            <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/b1.png') }}" class="logo" alt="logo-la-broudoute"></a>
+        </div>
+    </div>
+    <nav class="container container-nav">
+        <input type="checkbox" name="checkbox" id="check">           
+        <div class="nav-btn">
+            <div class="nav-links">
+                <ul class="nav-links-ul">
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="{{ path('products') }}" >Nos produits</a>
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="#">Qui sommes-nous</a>
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="#">contact</a>
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <div class="navbar-item-custom">
+                            {% if is_granted('ROLE_USER') %} 
+                                <a href="{{ path('account')}}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a href="{{ path('app_logout')}}">Déconnexion</a>
+                            {% else %}
+                                <a href="{{ path('app_login')}}">Connexion </a> | <a href="{{ path('register')}}">inscription</a>
+                            {% endif %}
+                        </div>
+
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="{{ path('cart') }}">
+                            <img src="{{ asset('assets/pictures/shopping-cart.png') }}" class="cart-icone" alt="mon panier">
+                        </a>
+                    </li>
+                </div>
+                </ul>
             </div>
-            <a href="{{ path('cart') }}">
-                <img src="{{ asset('assets/pictures/shopping-cart.png') }}" class="cart-icone" alt="mon panier">
-            </a>
+        </div>
+
+        <div class="hamburger-menu-container">
+            <div class="hamburger-menu">
+                <div></div>
+                    <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/b1.png') }}" class="hamburger-logo" alt="logo-la-broudoute"></a>
+            </div>
         </div>
     </nav>
-</header>
-
+ 
+</header> 
+        
 <main role="main">
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -112,7 +132,7 @@
     <footer class="footer-custom">
         <p>
             &copy; 2021 La Broudoute<br>
-            <small> <a href="#">Privacy</a> 
+            <small> <a href="#">Mentions légales</a> 
             &middot; <a href="#">Terms</a></small>
         </p>
     </footer>

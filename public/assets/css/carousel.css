@@ -1,18 +1,5 @@
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
-body {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    color: #5a5a5a;
-}
-
-
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
-
-/* Carousel base class */
 .carousel {
     margin-bottom: 4rem;
 }
@@ -24,7 +11,9 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-    height: 32rem;
+/*     height: 32rem;
+ */
+     height: 45rem;
 }
 .carousel-item > img {
     position: absolute;
@@ -34,9 +23,71 @@ body {
     height: 32rem;
 }
 
-
 /* MARKETING CONTENT
 -------------------------------------------------- */
+.h1-home {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.home-best-products {
+    margin-bottom: 20px;
+    border: 1px solid #f1e4d8;
+}
+
+.home-btn-all-products{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+button {
+  position: relative;
+  height: 75px;
+  width: 150px;
+  margin: 10px 7px;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #5c5c5c;
+  border: 2px #f1e4d8 solid;
+  border-radius: 4px;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+  background: none;
+  z-index: 1;
+  cursor: pointer;
+  transition:         0.08s ease-in;
+  -o-transition:      0.08s ease-in;
+  -ms-transition:     0.08s ease-in;
+  -moz-transition:    0.08s ease-in;
+  -webkit-transition: 0.08s ease-in;
+}
+
+.arrow{
+  text-align:left;
+  padding-left:17px;
+}
+
+.arrow:before{
+  content:"→";
+  position:absolute;
+  color:#383736;
+  left: 83%;
+  opacity: 0;
+/*   -webkit-transition: all 250ms cubic-bezier(0.680, -0.550, 0.265, 1.550); 
+ */}
+
+.arrow:hover:before{
+  left:84%;
+  opacity:1;
+}
+
+.arrow:hover {
+  width:200px;
+}
 
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
@@ -51,12 +102,12 @@ body {
     margin-left: .75rem;
 }
 
-
 /* Featurettes
 ------------------------- */
-
-.featurette-divider {
-    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+.first-featurette {
+    background-color: #f1e4d8;
+    padding: 20px;
+    margin: auto; 
 }
 
 /* Thin out the marketing headings */
@@ -66,10 +117,8 @@ body {
     letter-spacing: -.05rem;
 }
 
-
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-
 @media (min-width: 40em) {
     /* Bump up size of carousel content */
     .carousel-caption p {
@@ -80,11 +129,5 @@ body {
 
     .featurette-heading {
         font-size: 50px;
-    }
-}
-
-@media (min-width: 62em) {
-    .featurette-heading {
-        margin-top: 7rem;
     }
 }

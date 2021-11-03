@@ -1,14 +1,25 @@
 body {
     position: relative;
-    background-image: url("../pictures/background2.jpg");
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    padding-bottom: 3rem;
+    color: #5c5c5c;
+}
+/* Navbar */
+.logo {
+    width: 250px;
+    height: auto;
 }
 
-.navbar-item-custom, .navbar-item-custom a{
-	color: #fff;
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin:auto;
 }
+
+ul {
+    margin-bottom: 0 !important;
+}
+
+/* Footer */
 
 .footer-custom {
     text-align: center;
@@ -38,7 +49,7 @@ body {
 }
 
 .product-item .product-price {
-    font-weight: bold;
+    color: #939393;
 }
 
 .product-page-price {
@@ -86,4 +97,11 @@ body {
     background-color: #f4f8ff;
     padding: 20px;
     margin-top: 12px;
+}
+
+/* Change the size of the site's containers */
+@media (min-width: 992px) {
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 1300px !important;
+    }
 }
