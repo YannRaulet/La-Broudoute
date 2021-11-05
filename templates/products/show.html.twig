@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/navBar.html.twig' %}
 
 {% block title %} {{ product.name }} {% endblock %}
 
@@ -19,7 +19,7 @@
 			<p>
 				{{ product.description }}
 			</p>
-			<a href="{{ path('add_to_cart', {'id': product.id }) }}" class="btn btn-primary">Ajouter au panier</a>
+			<a href="{{ path('add_to_cart', {'id': product.id }) }}"><button class="button arrow">Ajouter au panier</button></a>
 		</div>
 	</div>
 	<hr>
@@ -27,15 +27,13 @@
 	<p>Retrouvez les tendances du moment</p>
     <div class="row">
         {% for product in bestProducts %}
-            <div class="col-md-2">
-				<div class="product-item text-center">
-					<a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"></a>
-					<h5>{{ product.name }}</h5>
-					<p class="product-subtitle">{{ product.subtitle }}</p>
-					<p class="product-price">{{ (product.price / 100) | number_format(2, ',', '.') }}
-						€</p>
-					{# divided by 100 because recorded in float #}
-				</div>
+            <div class="col-6 col-md-3">
+                <div class="product-item text-center">
+                    <a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="products-picture img-fluid img-thumbnail"></a>
+                    <h5>{{ product.name }}</h5>
+                    <p class="product-price">{{ (product.price / 100) | number_format(2, ',', '.') }}€</p>
+                    {# divided by 100 because recorded in float #}
+                </div>
             </div>
         {% endfor %}
     </div>

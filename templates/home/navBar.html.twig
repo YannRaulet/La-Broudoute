@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block navBar %} 
+    <div class="logo-container">
+        <div class="logo">
+            <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/b1.png') }}" class="logo" alt="logo-la-broudoute"></a>
+        </div>
+    </div>
+    <nav class="container container-nav">
+        <input type="checkbox" name="checkbox" id="check">           
+        <div class="nav-btn">
+            <div class="nav-links">
+                <ul class="nav-links-ul">
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="{{ path('products') }}" >Nos produits</a>
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="#">Qui sommes-nous</a>
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="#">contact</a>
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <div class="navbar-item-custom">
+                            {% if is_granted('ROLE_USER') %} 
+                                <a href="{{ path('account')}}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a href="{{ path('app_logout')}}">Déconnexion</a>
+                            {% else %}
+                                <a href="{{ path('app_login')}}">Connexion </a> | <a href="{{ path('register')}}">inscription</a>
+                            {% endif %}
+                        </div>
+
+                    </li>
+                    <li class="nav-link" style="--i: 1.35s">
+                        <a href="{{ path('cart') }}">
+                            <img src="{{ asset('assets/pictures/shopping-cart.png') }}" class="cart-icone" alt="mon panier">
+                        </a>
+                    </li>
+                </div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="hamburger-menu-container">
+            <div class="hamburger-menu">
+                <div></div>
+                    <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/b1.png') }}" class="hamburger-logo" alt="logo-la-broudoute"></a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}

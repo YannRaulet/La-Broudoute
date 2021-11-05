@@ -12,6 +12,7 @@
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/nav.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/navBar.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/cart.css')}}">
 
 
     <style>
@@ -34,54 +35,9 @@
     <link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
 </head>
 <body>
+
 <header>
-    <div class="logo-container">
-        <div class="logo">
-            <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/b1.png') }}" class="logo" alt="logo-la-broudoute"></a>
-        </div>
-    </div>
-    <nav class="container container-nav">
-        <input type="checkbox" name="checkbox" id="check">           
-        <div class="nav-btn">
-            <div class="nav-links">
-                <ul class="nav-links-ul">
-                    <li class="nav-link" style="--i: 1.35s">
-                        <a href="{{ path('products') }}" >Nos produits</a>
-                    </li>
-                    <li class="nav-link" style="--i: 1.35s">
-                        <a href="#">Qui sommes-nous</a>
-                    </li>
-                    <li class="nav-link" style="--i: 1.35s">
-                        <a href="#">contact</a>
-                    </li>
-                    <li class="nav-link" style="--i: 1.35s">
-                        <div class="navbar-item-custom">
-                            {% if is_granted('ROLE_USER') %} 
-                                <a href="{{ path('account')}}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a href="{{ path('app_logout')}}">Déconnexion</a>
-                            {% else %}
-                                <a href="{{ path('app_login')}}">Connexion </a> | <a href="{{ path('register')}}">inscription</a>
-                            {% endif %}
-                        </div>
-
-                    </li>
-                    <li class="nav-link" style="--i: 1.35s">
-                        <a href="{{ path('cart') }}">
-                            <img src="{{ asset('assets/pictures/shopping-cart.png') }}" class="cart-icone" alt="mon panier">
-                        </a>
-                    </li>
-                </div>
-                </ul>
-            </div>
-        </div>
-
-        <div class="hamburger-menu-container">
-            <div class="hamburger-menu">
-                <div></div>
-                    <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/b1.png') }}" class="hamburger-logo" alt="logo-la-broudoute"></a>
-            </div>
-        </div>
-    </nav>
- 
+    {% block navBar %} {% endblock %}
 </header> 
         
 <main role="main">
@@ -99,7 +55,8 @@
                         <div class="carousel-caption text-left">
                             <h1 id="carousel-title">{{ header.title }}</h1>
                             <p id="carousel-content">{{ header.content }}</p>
-                            <p><a class="btn btn-lg btn-primary" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
+                            <p><a href="{{ header.btnUrl }}"><button class="button arrow">{{ header.btnTitle }}</button></a></p>
+
                         </div>
                     </div>
                 </div>
@@ -139,5 +96,7 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/accordion-home.js') }}"></script>
+
 </body>
 </html>
