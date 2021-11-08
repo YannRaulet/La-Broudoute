@@ -1,16 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/navBar.html.twig' %}
 
 {% block carousel %}{% endblock %}
 
 {% block content %}
-
     <!-- products below the carousel -->
     <h1 class="h1-home">Les tendances du moment</h1>
     <div class="row">
         {% for product in bestProducts %}
             <div class="col-6 col-md-3">
                 <div class="product-item text-center">
-                    <a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="home-best-products img-fluid img-thumbnail"></a>
+                    <a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="products-picture img-fluid img-thumbnail"></a>
                     <h5>{{ product.name }}</h5>
                     <p class="product-price">{{ (product.price / 100) | number_format(2, ',', '.') }}€</p>
                     {# divided by 100 because recorded in float #}
@@ -19,33 +18,75 @@
         {% endfor %}
     </div>
     <div class="home-btn-all-products">
-        <a href="/nos-produits"> <button class="arrow">Voir nos produits</button> </a>
-    </div>
-    <!-- START THE FEATURETTES -->
-
-    <div class="row first-featurette">
-        <div class="col-md-7">
-            <p class="lead">Des produits pas forcément utiles, enfin, peut être, des fois un peu, ca dépend du moment,<br>
-            après, est-ce vraiment différent de ce que l'on trouve ailleurs ? Et puis c'est votre argent, alors pourquoi pas se faire plaisir, on n'a qu'une vie après tout bordel	</p>
-        </div>
-        <div class="col-md-5">
-                <img src="{{ asset('assets/pictures/labroudoute.jpg') }}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto img-thumbnail" width="400" height="400" focusable="false" role="img" aria-label="Placeholder: 500x500" alt="mon panier">
-        </div>
+        <a href="/nos-produits"><button class="button arrow">Voir nos produits</button></a>
     </div>
 
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it’s that good.
-                <span class="text-muted">See for yourself.</span>
-            </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    <!-- FEATURETTE -->
+    <div class="home-presentation ">
+        <div class="col-md-6 img-large-container">
+            <img src="{{ asset('assets/pictures/home-img-large.png') }}" class="img-large img-fluid mx-auto " alt="image">
         </div>
-        <div class="col-md-5 order-md-1">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-                <title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-            </svg>
+        <div class="col-md-6">
+            <img src="{{ asset('assets/pictures/logo-broudoute2.png') }}" class="img-small img-fluid mx-auto" alt="logo">
+            <hr>
+            <p class="lead">
+                Des produits pas forcément utiles, enfin, peut être, des fois un peu, ca dépend du moment,<br>
+                après, est-ce vraiment différent de ce que l'on trouve ailleurs ? Et puis c'est votre argent, alors pourquoi pas
+                se faire plaisir, on n'a qu'une vie après tout bordel
+            </p>
         </div>
     </div>
+    
+    <!-- ACCORDION -->
+    <div class="accordion">
+        <div class="contentBox">
+            <div class="label">
+                <img src="{{ asset('assets/pictures/expedition.png') }}" alt="expedition">
+                <p class=""><strong>Expédition rapide</strong></p>
+            </div>
+            <div class="content">
+                <p>Même Amaz*n ne peut pas faire plus vite
+                <br>Une preuve ? Commandez !</p>
+            </div>
+        </div>
+        <div class="contentBox">
+            <div class="label">
+                <img src="{{ asset('assets/pictures/livraison.png') }}" alt="expedition">
+                <p class=""><strong>Moyen de livraison</strong></p>
+            </div>
+            <div class="content">
+                <p>
+                    Adapté à tous type d'environnement :
+                    <br>Canadaire, chameau, dauphin,
+                    <br>pigeon (attention aux périodes de chasse)...
+                </p>
+            </div>
+        </div>
 
-    <hr class="featurette-divider">
+        <div class="contentBox">
+            <div class="label">
+                <img src="{{ asset('assets/pictures/service-clients.png') }}" alt="expedition">
+                <p class=""><strong>Service client</strong></p>
+            </div>
+            <div class="content">
+                <p>A votre écoute du lundi au vendredi
+                <br>de 9h à 10 h
+                <br>et de 14h à 15h</p>
+            </div>
+        </div>
+
+        <div class="contentBox">
+            <div class="label">
+                <img src="{{ asset('assets/pictures/paiement.png') }}" alt="expedition">
+                <p class=""><strong>Paiement sécurisé</strong></p>
+            </div>
+            <div class="content">
+                <p>
+                    Nous garantissons à notre clientèle que nous ne mettons 
+                    pas l'argent sous un seul matelats, mais sous plusieurs.
+                    Faut pas rigoler avec ça.
+                </p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

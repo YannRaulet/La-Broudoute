@@ -1,4 +1,4 @@
-/* CUSTOMIZE THE CAROUSEL
+/* HOME CAROUSEL
 -------------------------------------------------- */
 .carousel {
     margin-bottom: 4rem;
@@ -11,9 +11,7 @@
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-/*     height: 32rem;
- */
-     height: 45rem;
+    height: 45rem;
 }
 .carousel-item > img {
     position: absolute;
@@ -23,14 +21,26 @@
     height: 32rem;
 }
 
-/* MARKETING CONTENT
+/* HOME PRODUCTS
 -------------------------------------------------- */
 .h1-home {
     font-size: 2rem;
-    text-align: center;
+    position: relative;
+    margin-bottom: 50px;
 }
 
-.home-best-products {
+.h1-home:after {
+    position: absolute;
+    content: "";
+    background: grey;
+    width: 15%;
+    height: 1px;
+    left: 0;
+    bottom: -20px;
+}
+
+.products-picture {
+    background-color: #ebebeb;
     margin-bottom: 20px;
     border: 1px solid #f1e4d8;
 }
@@ -38,55 +48,53 @@
 .home-btn-all-products{
     display: flex;
     justify-content: center;
-    margin: 50px 0;
+    margin: 100px 0;
 }
 
-button {
-  position: relative;
-  height: 75px;
-  width: 150px;
-  margin: 10px 7px;
-  padding: 10px;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 2px;
-  color: #5c5c5c;
-  border: 2px #f1e4d8 solid;
-  border-radius: 4px;
-  text-transform: uppercase;
-  outline: 0;
-  overflow:hidden;
-  background: none;
-  z-index: 1;
-  cursor: pointer;
-  transition:         0.08s ease-in;
-  -o-transition:      0.08s ease-in;
-  -ms-transition:     0.08s ease-in;
-  -moz-transition:    0.08s ease-in;
-  -webkit-transition: 0.08s ease-in;
+.button {
+    position: relative;
+    height: 75px;
+    width: 150px;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #5c5c5c;
+    border: 2px #f1e4d8 solid;
+    border-radius: 4px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow:hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition:         0.08s ease-in;
+    -o-transition:      0.08s ease-in;
+    -ms-transition:     0.08s ease-in;
+    -moz-transition:    0.08s ease-in;
+    -webkit-transition: 0.08s ease-in;
 }
 
 .arrow{
-  text-align:left;
-  padding-left:17px;
+    text-align:left;
+    padding-left:17px;
 }
 
 .arrow:before{
-  content:"→";
-  position:absolute;
-  color:#383736;
-  left: 83%;
-  opacity: 0;
-/*   -webkit-transition: all 250ms cubic-bezier(0.680, -0.550, 0.265, 1.550); 
- */}
+    content:"→";
+    position:absolute;
+    color:#383736;
+    left: 83%;
+    opacity: 0;
+}
 
 .arrow:hover:before{
-  left:84%;
-  opacity:1;
+    left:84%;
+    opacity:1;
 }
 
 .arrow:hover {
-  width:200px;
+    width:200px;
 }
 
 /* Center align the text within the three columns below the carousel */
@@ -104,8 +112,69 @@ button {
 
 /* Featurettes
 ------------------------- */
+.parent {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    margin-bottom: 50px;
+ }
+
+.child1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    justify-content: center;
+    border: none !important;
+}
+
+.child1 img {
+    border: none !important;
+}
+
+.child2 {
+    z-index: 1;
+    top: 150px;
+    margin: 15px;
+    background: #f1e4d8;
+    width: 90%;
+    text-align: center;
+    height: auto;
+}
+
+.child2 p {
+    font-size: 18px;
+}
+
+.home-presentation {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #f1e4d8;
+    margin-right: -18px;
+    margin-left: -18px; 
+    padding: 30px 0;
+}
+
+.home-presentation .img-large  {
+    width: 80%;
+    display: block;
+    height: auto;
+    margin-bottom: 25px;    
+}
+
+.home-presentation p {
+    max-width: 450px;
+    font-size: 16px;
+    text-align: justify;
+}
+
 .first-featurette {
-    background-color: #f1e4d8;
     padding: 20px;
     margin: auto; 
 }
@@ -115,6 +184,59 @@ button {
     font-weight: 300;
     line-height: 1;
     letter-spacing: -.05rem;
+}
+
+/* VERTICAL ACCORDION
+-------------------------------------------------- */
+.accordion {
+    max-width: 800px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+} 
+
+.accordion .contentBox {
+    position: relative;
+    margin: 10px 20px;
+}
+
+.accordion .contentBox .label {
+    position: relative;
+    padding: 10px;
+    color: #5c5c5c;
+    cursor: pointer;
+    text-align: center;
+    border-bottom: 1px solid #5c5c5c;
+}
+
+.accordion .contentBox .label::before {
+    content: url("../pictures/down-arrow.png");
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+.accordion .contentBox.active .label::before {
+    content: url("../pictures/up-arrows.png");
+}
+
+.accordion .contentBox .content {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    overflow-y: auto;
+}
+
+.accordion .contentBox.active .content {
+    height: 150px;
+    padding: 10px;
+}
+
+.accordion .content p{
+    text-align: center;
+    font-style: italic;
 }
 
 /* RESPONSIVE CSS
@@ -130,4 +252,38 @@ button {
     .featurette-heading {
         font-size: 50px;
     }
+
+     .accordion {
+        width: 60%;
+        margin: auto;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    } 
+
+    .home-presentation {
+        /* Full Width Containers in Limited Width Parents */
+        width: 100vw;
+        max-width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 50px 0;
+    }
+
+    .home-presetation .img-large-container {
+        margin: auto;
+        display: flex;
+    }
+
+    .home-presentation .img-large {
+        width: 500px;
+        height: auto;
+        float: right;
+    }
+
+    .home-presentation hr {
+        width: 50%;
+    } 
 }

@@ -15,22 +15,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/cart.css')}}">
 
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
     <!-- Custom styles for this template -->
     <link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
 </head>
@@ -40,9 +24,9 @@
     {% block navBar %} {% endblock %}
 </header> 
         
-<main role="main">
+<main role="main" id="main">
     {% if block('carousel') is defined %}
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <section id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for key,header in headers %}
                 <li data-target="#myCarousel" data-slide-to="{{ key }}" {% if key == 0 %} class="active" {% endif %}></li>
@@ -70,28 +54,60 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
+    </section>
     {% endif %}
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %}">
-
-
-
+    <section class="home-main {% if block('carousel') is not defined %}mt-5{% endif %}">
     {% block content %}{% endblock %}
-
-    </div><!-- /.container -->
+    </section>
 
     <!-- FOOTER -->
-    <footer class="footer-custom">
-        <p>
-            &copy; 2021 La Broudoute<br>
-            <small> <a href="#">Mentions légales</a> 
-            &middot; <a href="#">Terms</a></small>
-        </p>
+    <footer class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 px-4">
+                            <div class="logo-part">
+                                <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/logo-broudoute.png') }}" class="w-75 logo-footer" alt="logo-la-broudoute"></a>
+                                <p class="p-under-logo-footer">12, rue des Lilas</p>
+                                <p>Une vile comme une autre</p>
+                            </div>
+                        </div>
+                        <div class="responsives-col col-md-6 px-4">
+                            <p class="footer-p-underline"> À propos de l'entreprise</p>
+                            <a href="#" class="btn-footer"> Plus d'infos </a><br>
+                            <a href="#" class="btn-footer"> Nous contacter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="responsives-col col-md-6 px-4">
+                            <p class="footer-p-underline"> Service client</p>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li> <a href="#"> Aide & FAQ</a> </li>
+                                        <li> <a href="#"> Retours & échanges</a> </li>
+                                        <li> <a href="#"> Mentions légales</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="responsives-col col-md-6 ">
+                            <p class="footer-p-underline"> Suivez-nous</p class="footer-underline">
+                            <div class="social">
+                                <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/logo-facebook.png') }}" class="w-14 logo-footer" alt="logo-la-broudoute"></a>
+                                <a href="{{ path('home') }}"><img src="{{ asset('assets/pictures/logo-instagram.png') }}" class="w-14 logo-footer" alt="logo-la-broudoute"></a>
+                            </div>
+                            <p>&copy; 2021 La Broudoute</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
