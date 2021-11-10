@@ -3,7 +3,7 @@
 {% block title %}Connexion - La Broudoute{% endblock %}
 
 {% block content %}
-    <div class="block-small">
+    <div class="login-form-container">
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -36,11 +36,11 @@
                 </div>
             #}
 
-            <button class="btn btn-lg btn-info mt-3" type="submit">
+            <button class="btn button arrow" type="submit">
                 Se connecter
             </button>
             <hr>
-            <p class="text-center">Ou souhaitez-vous<a href="{{path('register') }}"> créer un compte</a> ?</p>
+            <p class="text-center">Vous n'avez pas encore de compte ? <br><a href="{{path('register') }}"> créer votre compte</a></p>
         </form>
     </div>
 {% endblock %}

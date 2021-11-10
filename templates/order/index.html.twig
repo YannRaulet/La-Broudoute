@@ -4,44 +4,22 @@
 
 {% block content %}
 
-    <h2>Passer ma commande</h2>
-    <p>Choisissez vos préférences avant de passer votre commande sur la Broudoute</p>
-    <hr>
-    <div class="row">
-        <div class="col-md-6">
-            {% set formHtml %}
-                {{ form_start(form, {action:path('order_recap')}) }}            {# Returns to the form of the add method of the OrderController #}
-                    {{ form_label(form.addresses, 'Choisissez votre adresse de livraison')}}
-                    <a href="{{ path('account_address_add') }}">Ajouter une nouvelle adresse</a>
-                {{ form_end(form) }}
+    <div class="order-form-container">
+        <h2>Passer ma commande</h2>
+        <p>Choisissez vos préférences avant de passer votre commande sur la Broudoute</p>
+        <hr>
+        {% set formHtml %}
+        {{ form_start(form, {action:path('order_recap')}) }}           {# Returns to the form of the add method of the OrderController #}
+            {{ form_row(form.addresses)}}
+                <div class="add-new-adress-link">
+                    <a href="{{ path('account_address_add') }}">Ou ajoutez une nouvelle adresse</a>
+                </div>
+                {{ form_row(form.carriers)}}
+            {{ form_end(form) }}
+        {% endset %}
 
-            {% endset %}
-
-            {{ formHtml|replace({'[br]': '<br>'})|raw }}                        {# Replace the separate [br] in the function __toString() of the Adress entity #}
-        </div>
-        <div class="col-md-6">
-            <div class="text-center">
-                <b> Récap de la commande</b><br>
-                <p> Retrouvez le récapitulatif de votre commande</p>
-
-            </div>
-            <div class="order-summary">
-                {% for key, product in cart %}                                  {# the key to be able to count the products #}
-                    <div class="row {% if key > 0 %}mt-2{%  endif %}">          {# Margin -top 2px if there are any items in the order summary #}
-                        <div class="col-2 my-auto">
-                            <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="75px">
-                        </div> 
-                        <div class="col-8"> 
-                            {{ product.product.name }}<br>
-                            <small>{{ product.product.subtitle }}</small>
-                        </div>
-                        <div class="col-2 my-auto">
-                            {{ product.quantity }}
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+        {{ formHtml|replace({'[br]': '<br>'})|raw }}                   {# Replace the separate [br] in the function __toString() of the Adress entity #}
     </div>
+
 {% endblock %}
  

@@ -3,15 +3,17 @@
 {% block title %}Mon compte - La Broudoute{% endblock %}
 
 {% block content %}
-<h1>Mon compte</h1>
-<p>Bienvenue {{ app.user.firstname }},<br> vous retrouverez toutes vos informations perosnnelles dans cet espace.</p>
-<hr>
-{% if is_granted('ROLE_ADMIN') %}           <!-- ROLE_ADMIN defined directly in Phpmyadmin -->
-    <a href="/admin">Accéder au backoffice en tant qu'administrateur</a><br>
-{% endif %}
-<a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br>
-<a href="{{ path('account_address') }}">Gérer mes adresses</a>
-
-<hr>
-
+    <h1>Mon compte</h1>
+    <p>
+        Bienvenue {{ app.user.firstname }},<br>
+        vous retrouverez toutes vos informations perosnnelles dans cet espace.
+    </p>
+    <hr>
+    {% if is_granted('ROLE_ADMIN') %}           <!-- ROLE_ADMIN defined directly in Phpmyadmin -->
+        <a href="/admin">Accéder au backoffice en tant qu'administrateur</a><br>
+    {% endif %}
+    <a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br>
+    <a href="{{ path('account_address') }}">Gérer mes adresses</a><br>
+    <a href="{{ path('app_logout')}}">Déconnexion</a>
+    <hr>
 {% endblock %}

@@ -82,7 +82,7 @@ class RegisterType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "Accepter les conditions d'utilisation",
+                'label' => "En cochant cette case, vous acceptez notre politique de confidentialité (ajouter lien, cf RegisterForm)",
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les conditions.',
@@ -90,9 +90,11 @@ class RegisterType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "S'inscrire",
+                'label' => 'Créer mon compte',
+                'attr' => [
+                    'class' => 'btn button arrow'
                 ]
-            )
+            ])
         ;
     }
 

@@ -4,35 +4,33 @@
 
 {% block content %}
 
-    <h2>Récap ma commande</h2>
-    <p>Vérifiez vos informations avant de passer au paiement de votre commande</p>
+    <h2 class="order-form-recap-title">Récapitulatif de ma commande</h2>
+    <p class="order-form-recap-title">Vérifiez vos informations avant de passer au paiement de votre commande</p>
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <strong> Mon adresse de livraison</strong><br>
-            <div class="order-form mt-2">
+            <p class="order-form-recap-title"> Mon adresse de livraison</p>
+            <div class="order-form-recap mt-2">
                 {{ delivery|raw }}
             </div>
             <hr>
-            <strong>Mon transporteur</strong><br>
-            <div class="order-form">
+            <p class="order-form-recap-title">Mon transporteur</p>
+            <div class="order-form-recap">
                 {{ carrier.name }}<br>
                 {{ carrier.description }}<br>
                 {{ (carrier.price)|number_format(2, ',', '.') }} €
             </div>
         </div>
         <div class="col-md-6">
-            <div class="text-center">
-                <b>Ma commande</b><br>
-            </div>
+            <p class="order-form-recap-title">Ma commande</p>
             <div class="order-summary">
                 {% set total = null %}
                 {% for key, product in cart %}                                  {# the key to be able to count the products #}
                     <div class="row {% if key > 0 %}mt-2{%  endif %}">          {# Margin -top 2px if there are any items in the order summary #}
-                        <div class="col-2 my-auto">
+                        <div class="col-3 my-auto">
                             <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="75px">
                         </div> 
-                        <div class="col-8"> 
+                        <div class="col-7"> 
                             {{ product.product.name }}<br>
                             <small>
                                 {{ product.product.subtitle }}
@@ -54,7 +52,7 @@
             <hr>
             <strong>Total : </strong>{{ ((total / 100)+ carrier.price)|number_format(2, ',', '.') }} € <br>
 
-            <a href="" class="btn btn-info float-right mt-3">Payer | {{ ((total / 100)+ carrier.price)|number_format(2, ',', '.') }} €</a>
+            <a href="" class="btn button arrow float-right mt-3">Payer | {{ ((total / 100)+ carrier.price)|number_format(2, ',', '.') }} €</a>
         </div>
     </div>
 {% endblock %}

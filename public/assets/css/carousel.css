@@ -40,9 +40,9 @@
 }
 
 .products-picture {
-    background-color: #ebebeb;
+    background-color: var(--third-color);
     margin-bottom: 20px;
-    border: 1px solid #f1e4d8;
+    border: 1px solid var(--main-color);
 }
 
 .home-btn-all-products{
@@ -59,7 +59,7 @@
     font-weight: 700;
     font-size: 15px;
     letter-spacing: 2px;
-    color: #5c5c5c;
+    color: var(--second-color);
     border: 2px #f1e4d8 solid;
     border-radius: 4px;
     text-transform: uppercase;
@@ -170,8 +170,9 @@
 
 .home-presentation p {
     max-width: 450px;
-    font-size: 16px;
-    text-align: justify;
+    font-size: 18px;
+    text-align: center;
+    font-style: italic;
 }
 
 .first-featurette {
@@ -202,10 +203,10 @@
 .accordion .contentBox .label {
     position: relative;
     padding: 10px;
-    color: #5c5c5c;
+    color: var(--second-color);
     cursor: pointer;
     text-align: center;
-    border-bottom: 1px solid #5c5c5c;
+    border-bottom: 1px solid var(--second-color);
 }
 
 .accordion .contentBox .label::before {
