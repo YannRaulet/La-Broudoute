@@ -117,7 +117,6 @@ ul {
 /* cf orderType*/
 .order-form-container {
     margin: auto;
-    text-align: center;
 }
 
 .order-form {
@@ -157,14 +156,16 @@ ul {
 }
 .order-form-recap {
     background-color: var(--third-color);
+    border-bottom: 1px solid #000;
     padding: 20px;
-    margin-top: 12px;
+    margin: 15px 0;
 }
 
 .order-summary {
     background-color: var(--third-color);
+    border-bottom: 1px solid #000;
     padding: 20px;
-    margin-top: 12px;
+    margin-bottom: 20px;
 }
 
 /* Footer */
@@ -253,22 +254,13 @@ footer a:hover {
 
     /* order/index */
     .order-form-container {
-        width: 100%;
+        width: 50%;
     }
 
     .order-form-container hr{
         width:50%;
         margin: auto;
         padding-bottom: 25px;
-    }
-
-    .order-form {
-        width: 50%; 
-        margin: auto;
-    }
-
-    .add-new-adress-link {
-        width: 50%;
     }
 
     /* FOOTER */

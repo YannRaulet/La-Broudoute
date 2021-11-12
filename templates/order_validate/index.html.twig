@@ -1,0 +1,21 @@
+{% extends 'home/navBar.html.twig' %}
+
+{% block title %}Confirmation de commande - La Broudoute{% endblock %}
+
+{% block content %}
+
+    <div class="order-form-container">    
+        <h2>Confirmation de commande</h2>
+        <p>
+            Bonjour <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>, <br>
+            Nous vous remercions pour votre commande.<br>
+            Une confirmation vient de vous être envoyé par email à l'adresse <strong>{{ order.user.email }}</strong>.
+            <hr>
+            Votre commande sera livrée par <strong>{{ order.carrierName }}</strong> à l'adresse suivante :<br>
+            {{ order.delivery|raw }}
+            <hr>
+            Pour suivre votre commande, rendez-vous dans <a href="{{ path('account') }}">votre compte.</a>
+        </p>
+    </div>
+
+{% endblock %}

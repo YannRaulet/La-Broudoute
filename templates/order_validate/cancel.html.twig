@@ -1,0 +1,19 @@
+{% extends 'home/navBar.html.twig' %}
+
+{% block title %}Erreur de paiement- La Broudoute{% endblock %}
+
+{% block content %}
+
+    <div class="order-form-container">    
+        <h2>Erreur de commande</h2>
+        <p>
+            Bonjour <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>, <br>
+            Il semblerait que votre paiement ait échoué.<br>
+            Une confirmation d'erreur vient de vous être envoyé par email à l'adresse <strong>{{ order.user.email }}</strong>.
+            <hr>
+        </p>
+        <a class="btn button arrow"href="{{ path('order') }}">Réessayer votre paiement</a>
+
+    </div>
+
+{% endblock %}

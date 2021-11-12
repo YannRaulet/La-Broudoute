@@ -62,6 +62,8 @@ class OrderController extends AbstractController
 
             // Register my order : Order()
             $order = new Order();
+            $reference = $date->format('dmY').'-'.uniqid();
+            $order->setReference($reference);
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setCarrierName($carrier->getName());
@@ -70,10 +72,10 @@ class OrderController extends AbstractController
             $order->setIsPaid(0);
 
             $manager->persist($order);
-            
 
             // Register my products : OrderDetails()
-            foreach ($cart->getFull() as $product) {            // For each product in my cart
+            // For each product in my cart
+            foreach ($cart->getFull() as $product) {
                 $orderDetails = new OrderDetails();
                 $orderDetails->setMyOrder($order);
                 $orderDetails->setProduct($product['product']->getName());
@@ -85,13 +87,16 @@ class OrderController extends AbstractController
             }
 
             $manager->flush();
+
             return $this->render('order/add.html.twig', [
                 'cart' => $cart->getFull(),                          // Retrieves all the data of the Cart entity with the full function
                 'carrier' => $carrier,
-                'delivery' => $delivery_content
+                'delivery' => $delivery_content,
+                'reference'=>$order->getReference()
+
             ]);
         }
 
-        return $this->redirectToRoute('products');
+        return $this->redirectToRoute('cart');
     }
 }
