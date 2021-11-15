@@ -56,7 +56,15 @@ class Order
      */
     private bool $isPaid;
 
- 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $reference;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $stripeSessionUrl;
 
     public function __construct()
     {
@@ -176,6 +184,30 @@ class Order
     public function setIsPaid(bool $isPaid): self
     {
         $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripeSessionUrl(): ?string
+    {
+        return $this->stripeSessionUrl;
+    }
+
+    public function setStripeSessionUrl(?string $stripeSessionUrl): self
+    {
+        $this->stripeSessionUrl = $stripeSessionUrl;
 
         return $this;
     }

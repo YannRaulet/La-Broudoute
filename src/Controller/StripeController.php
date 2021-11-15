@@ -10,7 +10,6 @@ use Stripe\Checkout\Session;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StripeController extends AbstractController
@@ -21,7 +20,7 @@ class StripeController extends AbstractController
     public function index(
         Cart $cart,
         EntityManagerInterface $manager,
-        $reference
+        string $reference
         ): Response
     {
         $products_for_stripe = [];
@@ -32,7 +31,7 @@ class StripeController extends AbstractController
 
         if(!$order){
             return $this->redirectToRoute('order');
-        }
+        } 
 
         foreach ($order->getOrderDetails()->getValues() as $product) {     
             // For each product in my cart
@@ -49,7 +48,7 @@ class StripeController extends AbstractController
                 'quantity' => $product->getQuantity(),
             ];
         }
-
+        
         $products_for_stripe[] = [
             'price_data' => [
                 'currency' => 'eur',
@@ -72,14 +71,12 @@ class StripeController extends AbstractController
                 $products_for_stripe
             ],
             'mode' => 'payment',
-/*             'success_url' => $YOUR_DOMAIN .'/commande/merci/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => $YOUR_DOMAIN .'/commande/erreur/{CHECKOUT_SESSION_ID}',  */
-            'success_url' => $YOUR_DOMAIN . '/commande/success',
-            'cancel_url' => $YOUR_DOMAIN . '/commande/cancel', 
+             'success_url' => $YOUR_DOMAIN .'/commande/success',
+            'cancel_url' => $YOUR_DOMAIN .'/commande/cancel',
         ]);
  
         $order->setStripeSessionUrl($checkout_session->url);
-        $manager->flush(); 
+        $manager->flush();
 
         return $this->redirect($checkout_session->url);
     }

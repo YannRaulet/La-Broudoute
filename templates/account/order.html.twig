@@ -1,0 +1,36 @@
+{% extends 'home/navBar.html.twig' %}
+
+{% block title %}Mes commandes - La Broudoute{% endblock %}
+
+{% block content %}
+    <h1>Mes commandes</h1>
+	<p>Vous retrouverez la liste de vos commandes dans cet espace.</p>
+	<a href="{{ path('account') }}">Retour</a>
+	{% if app.user.orders|length == 0%}
+    	<hr>
+		<p class="text-center mt-5">
+            Vous n'avez pas encore passé de commandes.</a>
+		</p>
+    {% else %}
+         <table class="table table-hover mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Commande passée le</th>
+                    <th scope="col">Produits</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in app.user.orders %}
+                    <tr>
+                        <td>{{ order.createdAt|date('d/m/Y ') }}</td>
+                        <td>{{ order.orderDetails|length }}</td>
+                        <td>{{ ((order.carrierPrice + order.getTotal) / 100)|number_format(2,',','.')}} €</td>
+                        <td class="text-right"><a href="{{path('account_order_show', { id : order.id }) }}">Voir ma commande</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+	{% endif %}
+{% endblock %}

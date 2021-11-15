@@ -1,0 +1,42 @@
+{% extends 'home/navBar.html.twig' %}
+
+{% block title %}Ma commande - La Broudoute{% endblock %}
+
+{% block content %}
+    <h1>Ma commande n° {{ order.id }}</h1>
+    <a href="{{path('account_order') }}">Retour vers mes commandes</a><br>
+
+    <strong>Commande passée le : </strong> {{ order.createdAt|date('d/m/Y') }}<br>
+    <strong>Référence de la commande : </strong> {{ order.reference }}<br>
+    <strong>Transporteur : </strong> {{ order.carrierName }}<br>
+    <hr>
+    <strong>Détails :</strong>
+    <table class="table table-hover mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Produit(s)</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix unitaire</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in order.orderDetails %}
+                <tr>
+                    <td>{{ product.product }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ (product.price / 100)|number_format(2,',','.')}} €</td>
+                    <td>{{ (product.total / 100)|number_format(2,',','.')}} €</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <div class="text-right">
+        <strong>Sous-total : </strong>{{ (order.getTotal / 100) | number_format(2, ',', '.') }} €<br>
+        <strong>Livraison : </strong>{{ ( order.carrierPrice / 100) | number_format(2, ',', '.') }} €<br>
+        <strong>Ttoal général : </strong>{{ ((order.getTotal + order.carrierPrice) / 100) | number_format(2, ',', '.') }} €
+
+    </div>
+
+{% endblock %}

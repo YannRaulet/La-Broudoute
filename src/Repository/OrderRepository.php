@@ -19,6 +19,21 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    /* 
+    * findSuccessOrders()
+    * Allows you to display the commands in the user area (account/order.html.twig)
+    */
+    public function findSuccessOrders($user)
+    {
+        return $this->createQueryBuilder('o')       // order.php
+            ->andWhere('o.isPaid = 1')              // Only when the order is paid
+            ->andWhere('o.user = :user')            // Only the commands of this user 
+            ->setParameter('user', $user)           // :user, flag link to $user in AccountOrderController
+            ->orderBy('o.id','DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Order[] Returns an array of Order objects
     //  */

@@ -14,6 +14,7 @@
     {% endif %}
     <a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br>
     <a href="{{ path('account_address') }}">Gérer mes adresses</a><br>
-    <a href="{{ path('app_logout')}}">Déconnexion</a>
+    <a href="{{ path('account_order') }}">Mes commandes</a><br>
     <hr>
+           <a href="{{ path('app_logout') }}"><button class="button arrow">Déconnexion</button></a>
 {% endblock %}
