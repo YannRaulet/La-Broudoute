@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Entity\Order;
+use App\Classe\Mailjet;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,13 +29,17 @@ class OrderValidateController extends AbstractController
         }
 
         // If the order has an "unpaid" status, place it in paid
-        if(!$order->getIsPaid()) {
+        if($order->getIsPaid()) {
             // Empty the "cart" session
             $cart->remove();
             // Modify the status isPaid of the order with 1
             $order->setIsPaid(1);
             $manager->flush();
         }
+         // Order confirmation by email
+         $mail = new Mailjet();
+         $content = "Bonjour ".$order->getUser()->getFirstname()."<br>"."Merci pour votre commande sur la Broudoute - BROU BROU.";
+         $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande la Broudoute est bien validée', $content); 
 
         return $this->render('order_validate/index.html.twig', [
             'order' => $order
