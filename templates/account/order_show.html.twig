@@ -6,7 +6,7 @@
     <h1>Ma commande n° {{ order.id }}</h1>
     <a href="{{path('account_order') }}">Retour vers mes commandes</a><br>
 
-    <strong>Commande passée le : </strong> {{ order.createdAt|date('d/m/Y') }}<br>
+    <strong>Commande passée le : </strong> {{ order.createdAt|format_datetime() }}<br>
     <strong>Référence de la commande : </strong> {{ order.reference }}<br>
     <strong>Transporteur : </strong> {{ order.carrierName }}<br>
     <hr>

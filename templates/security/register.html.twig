@@ -6,6 +6,10 @@
     <div class="register-form-container">
         <h1>Inscription</h1>
 
+        {% if notification %}
+            <div class="alert alert-info">{{ notification }}</div>
+        {% endif %}
+        <hr>
         {{ form(form)}}
 	</div>
 {% endblock %}
