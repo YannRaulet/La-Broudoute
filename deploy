@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ oh9hl_retro-cycling@retro-cycling.fr:~/sites/labroudoute.site --include=public/build --include=public/.htaccess --exclude-from=.gitignore --exclude=".*"
