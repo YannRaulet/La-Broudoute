@@ -25,7 +25,9 @@ class StripeController extends AbstractController
     {
         $products_for_stripe = [];
         // Change the domain name in production
-        $YOUR_DOMAIN = 'http://127.0.0.1:8000';
+        //$YOUR_DOMAIN = 'http://127.0.0.1:8000';
+        $YOUR_DOMAIN = 'https://oh9hlaqvaf.preview.infomaniak.website';
+
 
         $order = $manager->getRepository(Order::class)->findOneByReference($reference);
 
