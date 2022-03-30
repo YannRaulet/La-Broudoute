@@ -13,6 +13,7 @@
 					Form SearchType               
 		-->
 		{{ form(form) }}
+
 		</div>
 		<div class="col-md-9">
 			<h3>Nos produits</h3>
@@ -22,7 +23,7 @@
 					<div class="col-6 col-md-4">
 						<div class="product-item text-center">
 							<a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="products-picture img-fluid"></a>
-							<h5>{{ product.name }}</h5>
+							<p class="product-name">{{ product.name }}</p>
 							<p class="product-subtitle">{{ product.subtitle }}</p>
 							<p class="product-price">{{ (product.price / 100) | number_format(2, ',', '.') }}
 								€</p>

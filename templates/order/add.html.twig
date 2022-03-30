@@ -4,25 +4,25 @@
 
 {% block content %}
 
-    <h2 class="order-form-recap-title">Récapitulatif de ma commande</h2>
-    <p class="order-form-recap-title">Vérifiez vos informations avant de passer au paiement de votre commande</p>
+    <h2 class="order-summary-title">Récapitulatif de ma commande</h2>
+    <p class="order-summary-subtitle">Vérifiez vos informations avant de passer au paiement de votre commande</p>
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <p class="order-form-recap-title"> Mon adresse de livraison</p>
-            <div class="order-form-recap mt-2">
+            <p class="order-summary-title"> Mon adresse de livraison</p>
+            <div class="order-summary mt-2">
                 {{ delivery|raw }}
             </div>
-            <p class="order-form-recap-title">Mon transporteur</p>
-            <div class="order-form-recap">
+            <p class="order-summary-title">Mon transporteur</p>
+            <div class="order-summary">
                 {{ carrier.name }}<br>
                 {{ carrier.description }}<br>
                 {{ (carrier.price / 100)|number_format(2, ',', '.') }} €
             </div>
         </div>
         <div class="col-md-6">
-            <p class="order-form-recap-title">Ma commande</p>
-            <div class="order-summary">
+            <p class="order-summary-title">Ma commande</p>
+            <div class="order-products-summary">
                 {% set total = null %}
                 {% for key, product in cart %}                                  {# the key to be able to count the products #}
                     <div class="row {% if key > 0 %}mt-2{%  endif %}">          {# Margin -top 2px if there are any items in the order summary #}
@@ -54,5 +54,3 @@
         </div>
     </div>
 {% endblock %}
-
-

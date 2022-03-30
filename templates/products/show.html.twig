@@ -14,7 +14,7 @@
 			<span class="product-page-price">{{ (product.price /100)| number_format(2, ',', '.') }}
 				€</span>
 			<hr class="hr-show-product">
-			<a href="{{ path('add_to_cart', {'id': product.id }) }}"><button class="button arrow">Ajouter au panier</button></a>
+			<a href="{{ path('add_to_cart', {'id': product.id }) }}"><button class="button button-calypso"><span>Ajouter au panier</span></button></a>
 		
 			<!--VERTICAL ACCORDIONS -->
 			<div class="accordion-container">
@@ -90,7 +90,7 @@
             <div class="col-6 col-md-3">
                 <div class="product-item text-center">
                     <a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="products-picture img-fluid img-thumbnail"></a>
-                    <h5>{{ product.name }}</h5>
+                    <p class="product-name">{{ product.name }}</p>
                     <p class="product-price">{{ (product.price / 100) | number_format(2, ',', '.') }}€</p>
                     {# divided by 100 because recorded in float #}
                 </div>

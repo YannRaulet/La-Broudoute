@@ -12,7 +12,8 @@
         {{ form_start(form, {action:path('order_recap')}) }}           {# Returns to the form of the add method of the OrderController #}
             {{ form_row(form.addresses)}}
                 <div class="add-new-adress-link">
-                    <a href="{{ path('account_address_add') }}">Ou ajoutez une nouvelle adresse</a>
+                    <a href="{{ path('account_address_add') }}">
+                    Ou ajouter une nouvelle adresse</a>
                 </div>
                 {{ form_row(form.carriers)}}
             {{ form_end(form) }}

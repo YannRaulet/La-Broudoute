@@ -1,6 +1,6 @@
 :root{
-    --main-color: #f1e4d8;
-    --second-color : #5c5c5c;
+    --main-color: #ddc3a5;
+    --second-color : #201e20;
     --third-color : #f3f3f3;
 }
 
@@ -18,7 +18,8 @@ body, html {
 
 #main {
     position: relative;
-    min-height: 100%;
+    /*min-height: 100%;*/
+    min-height: 80%;
     padding-bottom: 200px;
 }
 
@@ -37,7 +38,8 @@ body, html {
 .logo-container {
     display: flex;
     justify-content: center;
-    margin:auto;
+    margin: auto;
+    padding: 10px;
 }
 
 ul {
@@ -111,10 +113,6 @@ ul {
     margin: 80px 0;
 }
 
-.product-description {
-
-}
-
 .hr-show-product {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -140,6 +138,7 @@ ul {
     display: block;
     padding: 10px 15px;
     color: var(--second-color);
+    font-size: 18px;
 }
 
 .panel-default>.panel-heading a:after {
@@ -192,22 +191,7 @@ ul {
 }
 
 .add-new-adress-link {
-    margin: auto;
-    border:1px solid var(--second-color);
-    padding: 5px 0;
     margin-bottom: 50px;
-}
-
-.add-new-adress-link:hover {
-    background-color: #f1e4d8;    
-}
-
-.add-new-adress-link a{
-    color:var(--second-color);
-}
-
-.add-new-adress-link a:hover {
-    color:var(--second-color) !important;
 }
 
 .col-form-label {
@@ -216,18 +200,24 @@ ul {
 
 /* ORDER /ADD
 -------------------------------------------------- */
-.order-form-recap-title {
+.order-summary-title {
     text-align: center;
     font-weight: bold;
 }
-.order-form-recap {
+
+.order-summary-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.order-summary {
     background-color: var(--third-color);
     border-bottom: 1px solid #000;
     padding: 20px;
     margin: 15px 0;
 }
 
-.order-summary {
+.order-products-summary {
     background-color: var(--third-color);
     border-bottom: 1px solid #000;
     padding: 20px;
@@ -250,14 +240,16 @@ ul {
 -------------------------------------------------- */
 .account-items {
     background-color: var(--third-color);
-    padding: 20px;
+    padding: 50px;
     text-align: center;
-    height: 200px;
+    height: 150px;
+    margin-bottom: 20px;
 }
 
 .account-items a {
     text-transform: uppercase;
     font-size: 14px;
+    color: var(--second-color);
 }
 
 /* FOOTER
@@ -292,7 +284,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 200px;
+    height: 180px;
     /*padding: 25px 0;*/
 }
 

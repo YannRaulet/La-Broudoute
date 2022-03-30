@@ -82,7 +82,7 @@ class RegisterType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "En cochant cette case, vous acceptez notre politique de confidentialité (ajouter lien, cf RegisterForm)",
+                'label' => "En cochant cette case, vous acceptez notre politique de confidentialité (voir : Mentions légales)",
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les conditions.',

@@ -7,7 +7,6 @@
     <meta name="author" content="La Broudoute, la boutique qui fait Brou, Brou !!">
     <meta name="generator" content="Jekyll v4.1.1">
     <title>{% block title %} La Broudoute {% endblock %}</title>
-    <script src="https://kit.fontawesome.com/784a254d72.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -40,7 +39,7 @@
                         <div class="carousel-caption text-left">
                             <h1 id="carousel-title">{{ header.title }}</h1>
                             <p id="carousel-content">{{ header.content }}</p>
-                            <p><a href="{{ header.btnUrl }}"><button class="button arrow">{{ header.btnTitle }}</button></a></p>
+                            <p><a href="{{ header.btnUrl }}"><button class="button button-calypso"><span>{{ header.btnTitle }}</span></button></a></p>
 
                         </div>
                     </div>
@@ -59,13 +58,13 @@
     {% endif %}
 
     <!-- Wrap the rest of the page in another container to center all the content. -->
-    <section class="home-main {% if block('carousel') is not defined %}mt-5{% endif %}">
+    <section class="home-main {% if block('carousel') is not defined %}mt-4{% endif %}">
     {% block content %}{% endblock %}
     </section>
 
     <!-- FOOTER -->
 
-        <footer class="container-fluid">
+    <footer class="container-fluid">
 
     <section class="icons-banner-section">
       
