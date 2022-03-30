@@ -10,7 +10,7 @@
             <div class="col-6 col-md-3">
                 <div class="product-item text-center">
                     <a href="{{ path('product', {'slug':product.slug }) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="products-picture img-fluid img-thumbnail"></a>
-                    <h5>{{ product.name }}</h5>
+                    <p class="product-name">{{ product.name }}</p>
                     <p class="product-price">{{ (product.price / 100) | number_format(2, ',', '.') }}€</p>
                     {# divided by 100 because recorded in float #}
                 </div>
@@ -34,59 +34,6 @@
                 après, est-ce vraiment différent de ce que l'on trouve ailleurs ? <br>Et puis c'est votre argent, alors pourquoi pas
                 se faire plaisir, on n'a qu'une vie après tout bordel."
             </p>
-        </div>
-    </div>
-    
-    <!-- ACCORDION -->
-    <div class="accordion">
-        <div class="contentBox">
-            <div class="label">
-                <img src="{{ asset('assets/pictures/expedition.png') }}" alt="expedition">
-                <p class=""><strong>Expédition rapide</strong></p>
-            </div>
-            <div class="content">
-                <p>Même Amaz*n ne peut pas faire plus vite
-                <br>Une preuve ? Commandez !</p>
-            </div>
-        </div>
-        <div class="contentBox">
-            <div class="label">
-                <img src="{{ asset('assets/pictures/livraison.png') }}" alt="expedition">
-                <p class=""><strong>Moyen de livraison</strong></p>
-            </div>
-            <div class="content">
-                <p>
-                    Adapté à tous type d'environnement :
-                    <br>Canadaire, chameau, dauphin,
-                    <br>pigeon (attention aux périodes de chasse)...
-                </p>
-            </div>
-        </div>
-
-        <div class="contentBox">
-            <div class="label">
-                <img src="{{ asset('assets/pictures/service-clients.png') }}" alt="expedition">
-                <p class=""><strong>Service client</strong></p>
-            </div>
-            <div class="content">
-                <p>A votre écoute du lundi au vendredi
-                <br>de 9h à 10 h
-                <br>et de 14h à 15h</p>
-            </div>
-        </div>
-
-        <div class="contentBox">
-            <div class="label">
-                <img src="{{ asset('assets/pictures/paiement.png') }}" alt="expedition">
-                <p class=""><strong>Paiement sécurisé</strong></p>
-            </div>
-            <div class="content">
-                <p>
-                    Nous garantissons à notre clientèle que nous ne mettons 
-                    pas l'argent sous un seul matelats, mais sous plusieurs.
-                    Faut pas rigoler avec ça.
-                </p>
-            </div>
         </div>
     </div>
 {% endblock %}
