@@ -15,7 +15,7 @@
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+            <h1 class="mb-5 font-weight-normal">Connexion</h1>
             <label for="inputEmail">Votre email</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Votre email" autocomplete="email" required autofocus>
             <label for="inputPassword">Votre mot de passe</label>
@@ -35,7 +35,7 @@
                     </label>
                 </div>
             #}
-            <button class="button button-calypso mt-5" type="submit" ><span>Se connecter</span></button>
+            <button class="button-design mt-5" type="submit" >Se connecter</button>
             <hr>
             <p class="text-center">Vous n'avez pas encore de compte ? <br><a href="{{path('register') }}"> créer votre compte</a></p>
         </form>

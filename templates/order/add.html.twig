@@ -50,7 +50,7 @@
             <hr>
             <strong>Total : </strong>{{ ((total / 100)+ (carrier.price / 100))|number_format(2, ',', '.') }} € <br>
         
-            <a href="{{ path('stripe_create_session',{'reference':reference}) }}" class="btn button arrow mt-3" id="checkout-button">Payer | {{ (((total)/100) + (carrier.price / 100))|number_format(2,',', '.') }}€</a>
+            <a href="{{ path('stripe_create_session',{'reference':reference}) }}" class="button-design mt-3" id="checkout-button">Payer | {{ (((total)/100) + (carrier.price / 100))|number_format(2,',', '.') }}€</a>
         </div>
     </div>
 {% endblock %}

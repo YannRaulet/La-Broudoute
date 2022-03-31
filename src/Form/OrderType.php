@@ -41,7 +41,7 @@ class OrderType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider ma commande',
                 'attr' => [
-                    'class' => 'btn button arrow'
+                    'class' => 'btn button-design'
                 ]
             ])
         ;
