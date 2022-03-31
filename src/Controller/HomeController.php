@@ -26,4 +26,13 @@ class HomeController extends AbstractController
             'headers' => $headers
         ]);    
     }
+
+    /**
+     * @Route("/mentions-légales", name="legal_notice")
+     * This controler displays the legal notices
+     */
+    public function legalNotice(): Response
+    {
+        return $this->render('home/legal_notice.html.twig');
+    }
 }
