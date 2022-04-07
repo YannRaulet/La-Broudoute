@@ -5,6 +5,10 @@ namespace App\Repository;
 use App\Classe\Search;
 use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
+use Container6UPf8cg\PaginatorInterface_82dac15;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
@@ -15,16 +19,17 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Product::class);
+        $this->paginator = $paginator;
     }
 
     /**
      * Request that allows me to retrieve products based on user research
-     * @return Product[]
+     * @return PaginationInterface
      */
-    public function findWithSearch(Search $search) {                // Create request
+    public function findWithSearch(Search $search): PaginationInterface {                // Create request
         $query = $this
             ->createQueryBuilder('p')                               // Mapping with Product table
             ->select('c', 'p')                                      // Select Category and Products in this query
@@ -42,7 +47,30 @@ class ProductRepository extends ServiceEntityRepository
                 ->setParameter('string', "%{$search->string}%");    // Allows you to do a partial search of the name
         }
 
-        return $query->getQuery()->getResult();
+        if (!empty($search->min)) {                                 // min price search
+            $query = $query
+                ->andWhere('p.price >= :min')
+                ->setParameter('min', $search->min*100);            // *100 because recorded in float in DB (EasyAdmin multiply *100)
+        }
+
+        if (!empty($search->max)) {
+            $query = $query
+                ->andWhere('p.price <= :max')
+                ->setParameter('max', $search->max*100);
+        }
+
+        if (!empty($search->promo)) {                                 
+            $query = $query
+                ->andWhere('p.promo =  1');                           // cf Class/search.php           
+        }
+
+        //return $query->getQuery()->getResult();
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            6           // Number of items by page
+        );
     }
 
     // /**
