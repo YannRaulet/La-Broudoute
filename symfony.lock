@@ -109,6 +109,12 @@
     "hamcrest/hamcrest-php": {
         "version": "v2.0.1"
     },
+    "knplabs/knp-components": {
+        "version": "v3.3.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.8.0"
+    },
     "laminas/laminas-code": {
         "version": "4.4.2"
     },

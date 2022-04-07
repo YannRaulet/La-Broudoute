@@ -106,6 +106,12 @@ ul {
     padding: 15px;    
 }
 
+.filter {
+    display: block;
+    position: sticky;
+    top: 20px;
+}
+
 /* PRODUCTS / SHOW
 -------------------------------------------------- */
 .hr-product {
@@ -367,6 +373,16 @@ ul {
     color: var(--second-color);
 }
 
+/* LEGAL NOTICE
+-------------------------------------------------- */
+.legal-notice-border {
+    font-size: 15px;
+}
+
+.legal-notice-border a {
+    font-size: 14px;
+}
+
 /* FOOTER
 -------------------------------------------------- */
     /* ICONS BANNER */
@@ -496,6 +512,11 @@ footer a:hover {
         width:50%;
         margin: auto;
         padding-bottom: 25px;
+    }
+
+    /* LEGAL NOTICE */
+    .legal-notice-border, .legal-notice-border a {
+        font-size: 16px;
     }
 
     /* FOOTER */

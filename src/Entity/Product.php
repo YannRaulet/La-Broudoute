@@ -58,6 +58,11 @@ class Product
      */
     private $isBest;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $promo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,7 +130,7 @@ class Product
 
     public function getPrice(): ?float
     {
-        return $this->price;
+        return $this->price ;
     }
 
     public function setPrice(float $price): self
@@ -155,6 +160,18 @@ class Product
     public function setIsBest(bool $isBest): self
     {
         $this->isBest = $isBest;
+
+        return $this;
+    }
+
+    public function getPromo(): ?bool
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(?bool $promo): self
+    {
+        $this->promo = $promo;
 
         return $this;
     }

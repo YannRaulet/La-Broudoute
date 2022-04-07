@@ -4,12 +4,14 @@ namespace App\Form;
 
 use App\Classe\Search;
 use App\Entity\Category;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SearchType extends AbstractType
 {
@@ -31,6 +33,26 @@ class SearchType extends AbstractType
                 'multiple' => true,                     // Multiple choices
                 'expanded' => true                      // View in checkbox
             ])
+
+            ->add('min', NumberType::class, [
+                'label'  => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Prix min'
+                ]
+            ])
+            ->add('max', NumberType::class, [
+                'label'  => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Prix max'
+                ]
+            ])
+            ->add('promo', CheckboxType::class, [
+                'label'  => 'En promotion',
+                'required' => false,
+            ])
+
             ->add('submit', SubmitType::class, [
                 'label'  => 'filtrer',
                 'attr' => [
